@@ -14,4 +14,21 @@
       </ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card class="secondary">
+    <ion-card-header>
+      <ion-card-subtitle class="texto">{{usuario}}</ion-card-subtitle>
+      <ion-card-title>Bienvenido/a!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="texto">
+      Pronto podrás poner a prueba tu memoria! <img src="../../assets/img/logo.svg" alt="Sword" height="15px" > 
+    </ion-card-content>
+  </ion-card>
+  
+  <div class="container-fluid d-flex justify-content-center align-items-center full-width">
+
+    <ion-button (click)="logout()">Cerrar Sesión</ion-button>
+  
+  </div>
+
 </ion-content>

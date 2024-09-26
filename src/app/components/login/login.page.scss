@@ -12,6 +12,18 @@ ion-button {
   --color: #FFFFFF;
 }
 
+.primary {
+  --background: #97DDEF;
+  --ion-color-primary: #97DDEF;
+  --ion-color-primary-contrast: #1A4F60;
+}
+
+.secondary {
+  --background: #6EC3D6;
+  --ion-color-secondary: #6EC3D6;
+  --ion-color-secondary-contrast: #FFFFFF;
+}
+
 .form-signin {
     max-width: 330px;
     padding: 1rem;
