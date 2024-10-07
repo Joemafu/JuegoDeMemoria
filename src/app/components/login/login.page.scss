@@ -1,110 +1,55 @@
-.full-height {
-  height: 100vh; /* Ocupa toda la altura del viewport */
-}
-
-.form-signin {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
-.full-width {
+.login-wrap {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: auto;
+  max-width: 525px;
+  min-height: 670px;
+  position: relative;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
 }
 
+.login-html {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding: 90px 70px 50px 70px;
+  background: rgba(40, 57, 101, .9);
+}
 
+.login-form {
+  min-height: 345px;
+  perspective: 1000px;
+}
 
+.group {
+  margin-bottom: 15px;
+}
 
-ion-content {
-  --background: #97DDEF ; // Color de fondo específico para el contenido
-  font-family: 'Roboto', sans-serif;
+.input {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, .1);
+}
+
+.input_warning {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 25px;
+  background: rgba(255, 156, 156, 0.945);
 }
 
 .texto {
-  color: #1A4F60;
+  color: #fff;
+}
+
+.foot-lnk {
+  text-align: center;
 }
 
 ion-button {
-  --background: #6EC3D6;
-  --color: #FFFFFF;
+  --background: #151A28;
+  --color: #fff;
+  --border:none;
+	--padding:15px 20px;
+	--border-radius:25px;
 }
-
-.primary {
-  --background: #97DDEF;
-  --ion-color-primary: #97DDEF;
-  --ion-color-primary-contrast: #1A4F60;
-}
-
-.secondary {
-  --background: #6EC3D6;
-  --ion-color-secondary: #6EC3D6;
-  --ion-color-secondary-contrast: #FFFFFF;
-}
-
-.form-signin {
-    max-width: 330px;
-    padding: 1rem;
-  }
-  
-  .form-signin .form-floating:focus-within {
-    z-index: 2;
-  }
-  
-  .form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-  
-  .form-signin input[type="password"] {
-    margin-bottom: -1px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-  
-  .fab-container {
-    position: fixed;
-    bottom: 100px;
-    right: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .fab-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 8px;
-    transition: transform 0.3s, opacity 0.3s;
-    transform: scale(0);
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .fab-buttons.open {
-    transform: scale(1);
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
-  .fab-sub-button {
-    margin-bottom: 8px;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .fab-sub-button img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
