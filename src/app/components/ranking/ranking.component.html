@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)="atras()">Atrás</ion-button>
+      </ion-buttons>
+      <ion-title>Mejores Puntajes</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="logout()">Cerrar Sesión</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list>
+      <!-- Mostrar los mejores puntajes para la dificultad seleccionada -->
+      <ion-item *ngFor="let score of bestTimes; let i = index">
+        <ion-label>
+          <h2>#{{ i + 1 }} - {{ score.Tiempo }} segundos</h2>
+          <p>Jugador: {{ score.Usuario }}</p>
+          <p>Jugado el {{ score.Fecha | date: 'short' }}</p>
+          <p>Dificultad: {{ score.Dificultad }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+  <ion-footer>
+    <ion-toolbar>
+      <!-- Botones para seleccionar la dificultad -->
+      <ion-buttons class="centrado">
+        <ion-button  *ngFor="let difficulty of difficulties"
+                    [color]="selectedDifficulty === difficulty ? 'primary' : '#151a28'"
+                    (click)="selectDifficulty(difficulty)">
+          {{ difficulty }}
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>

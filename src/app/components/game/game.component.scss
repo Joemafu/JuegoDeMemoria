@@ -1,0 +1,57 @@
+//@import './../login/login.page.scss';
+
+ion-content {
+    background: rgba(40, 57, 101, .9);
+    max-height: 100vh;
+}
+
+.game-grid {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+    height: calc(100vh - 56px);
+
+    &.easy {
+      grid-template-columns: repeat(2, 1fr); /* 3 columnas para 6 cartas (3 pares) */
+      grid-auto-rows: calc((100% - 10px) / 3);
+    }
+    &.medium {
+      grid-template-columns: repeat(3, 1fr); /* 4 columnas para 10 cartas (5 pares) */
+      grid-auto-rows: calc((100% - 20px) / 4);
+    }
+    &.hard {
+      grid-template-columns: repeat(4, 1fr); /* 4 columnas para 16 cartas (8 pares) */
+      grid-auto-rows: calc((100% - 30px) / 4);
+    }
+  
+    .card {
+      position: relative;
+      width: 100%;
+      padding-bottom: 100%; /* Hace que cada carta sea cuadrada */
+      background-color: #515e82;
+    }
+  }
+
+  .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .figure {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .timer {
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 10px;
+  }
+  

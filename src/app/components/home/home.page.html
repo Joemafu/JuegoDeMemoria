@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Seleccionar Dificultad</ion-title>
+    <ion-buttons slot="end">
+    <ion-button (click)="logout()">Cerrar Sesión</ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <div class="bottom glitchy">
+    <img src={{imagenAleatoria}} alt="" height="180px">
+  </div>
+  <div class="difficulty-container">
+    <ion-button expand="block" (click)="startGame('easy')">Fácil</ion-button>
+    <ion-button expand="block" (click)="startGame('medium')">Medio</ion-button>
+    <ion-button expand="block" (click)="startGame('hard')">Difícil</ion-button>
+  </div>
+  <div class="bottom img">
+    <img class="" src="./../../../assets/img/cucarda.png" alt="" height="150px">
+    <ion-button class="" expand="block" (click)="goToRanking()">Ver mejores registros</ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,52 @@
+@import '../login/login.page.scss';
+
+ion-content {
+  background: rgba(40, 57, 101, .9);
+  max-height: calc(100vh - 56px);
+  height: 100%;
+}
+
+.difficulty-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  ion-button {
+    margin: 10px 0;
+    width: 80%;
+  }
+}
+
+.bottom{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 10px;
+  bottom: 0;
+  z-index: 100;
+  
+  ion-button {
+    margin: 10px 0;
+    width: 80%;
+  }
+}
+
+.img {
+  margin-top: 65px;
+}
+
+.glitchy {
+  //animation: glitch 1.5s steps(5) infinite;
+}
+
+@keyframes glitch {
+  0% { transform: skew(0deg); }
+  20% { transform: skew(10deg); }
+  40% { transform: skew(-10deg); }
+  60% { transform: skew(20deg); }
+  80% { transform: skew(-20deg); }
+  100% { transform: skew(0deg); }
+}
