@@ -1,11 +1,7 @@
-export interface Item {
-    categoria: string;
-    foto: string;
-
-
-    datoDinamicoUno?: { clave: string, valor: string };
-    datoDinamicoDos?: { clave: string, valor: string };
-    datoDinamicoTres?: { clave: string, valor: string };
-    datoDinamicoCuatro?: { clave: string, valor: string };
-    datoDinamicoCinco?: { clave: string, valor: string };
+export interface Record {
+    correo: string;
+    dificultad: 'Fácil' | 'Medio' | 'Difícil';
+    fecha: string;
+    tiempo: number;
+    usuario: string;
 }

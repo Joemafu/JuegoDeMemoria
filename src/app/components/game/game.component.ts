@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonCardSubtitle, IonCardHeader, IonCard, IonCardTitle, IonCardContent, IonFooter, IonButtons } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonContent, IonButton, IonButtons } from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { Firestore, collection, addDoc, query, where, orderBy, getDocs, limit, doc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, query, where, orderBy, getDocs, limit } from '@angular/fire/firestore';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
   standalone: true,
-  imports: [IonButtons, IonFooter, IonButton, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonHeader, IonToolbar, IonTitle, IonContent, CommonModule],
+  imports: [IonButtons, IonButton, IonHeader, IonToolbar, IonContent, CommonModule],
 })
 export class GameComponent  implements OnInit {
 
@@ -29,7 +29,6 @@ export class GameComponent  implements OnInit {
   tiempoRegistrado: number = 0;
   firestore: Firestore = inject(Firestore);
 
-  //BETA
   startTime: number = 0;
 
   constructor() { }
@@ -102,39 +101,25 @@ export class GameComponent  implements OnInit {
     }
   }
 
-
-
-  //BETA
   startTimer() {
-    this.startTime = Date.now();  // Guardar el tiempo de inicio
+    this.startTime = Date.now();
     this.interval = setInterval(() => {
       this.updateTimer();
     }, 1);
   }
+
   updateTimer() {
     const currentTime = Date.now();
-    const elapsedTime = currentTime - this.startTime;  // Calcular el tiempo transcurrido
+    const elapsedTime = currentTime - this.startTime;
   
     // Calcular los segundos y milisegundos transcurridos
     this.timer = Math.floor(elapsedTime / 1000);  // Segundos transcurridos
     this.milisegundos = elapsedTime % 1000;  // Milisegundos transcurridos
   }
+  
   stopTimer() {
     clearInterval(this.interval);
   }
-
-/*   startTimer() {
-    this.interval = setInterval(() => {
-      if (this.milisegundos === 999) {
-        this.timer++;
-        this.milisegundos = 0;
-      }
-      else
-      {
-        this.milisegundos++;
-      }
-    }, 1);
-  } */
 
   shuffleArray(array: any[]): any[] {
     return array.sort(() => Math.random() - 0.5);
@@ -154,31 +139,31 @@ export class GameComponent  implements OnInit {
 
   async endGame() {
     clearInterval(this.interval);
-
+  
     const dificultad = this.translateDifficulty();
-
+  
     const playerRecord = {
       Correo: this.authService.currentUser,
       Tiempo: this.tiempoRegistrado,
       Dificultad: dificultad,
       Fecha: new Date().toISOString(),
-      Usuario:  this.authService.currentUser.split('@')[0]
+      Usuario: this.authService.currentUser.split('@')[0]
     };
-
+  
     try {
       const col = collection(this.firestore, 'records');
       const queryCol = query(col, where('Dificultad', '==', dificultad), orderBy('Tiempo', 'asc'), limit(5));
       const querySnapshot = await getDocs(queryCol);
-      
+  
       const bestTimes = querySnapshot.docs.map(doc => doc.data());
-
-      if (bestTimes.length < 5 || this.tiempoRegistrado < bestTimes.length - 1) {
-        let records = collection(this.firestore, 'records');
-        let docRef = await addDoc(records, playerRecord);
-
+  
+      if (bestTimes.length < 5 || this.tiempoRegistrado < bestTimes[bestTimes.length - 1]['Tiempo']) {
+        const records = collection(this.firestore, 'records');
+        const docRef = await addDoc(records, playerRecord);
+  
         Swal.fire({
           title: '¡Felicitaciones!',
-          text: `Entraste al podio de los mejores 5! Tu tiempo de ${this.tiempoRegistrado} segundos se guardó en el salón de la fama.`,
+          text: `Entraste al podio de los mejores 5! Tu tiempo de ${this.tiempoRegistrado} segundos. Entraste en el salón de la fama!`,
           icon: 'success',
           confirmButtonText: 'Ok',
           heightAuto: false,
@@ -186,10 +171,10 @@ export class GameComponent  implements OnInit {
           color: '#151a28',
           confirmButtonColor: '#151a28',
         });
-
+  
         return docRef.id;
-      }else{
-
+      } else {
+  
         Swal.fire({
           title: '¡Sigue intentando!',
           text: `Tu tiempo de ${this.tiempoRegistrado} segundos no fue suficiente para entrar al podio de los mejores 5.`,
@@ -203,11 +188,11 @@ export class GameComponent  implements OnInit {
         return '';
       }
     } catch (e) {
-      console.error('Error getting documents: ', e);
+      console.error('Error al obtener documentos o agregar nuevo registro:', e);
       return '';
     }
   }
-
+  
   translateDifficulty() {
     switch (this.difficulty) {
       case 'easy':

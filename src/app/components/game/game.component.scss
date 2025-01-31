@@ -1,57 +1,96 @@
-//@import './../login/login.page.scss';
-
 ion-content {
-    background: rgba(40, 57, 101, .9);
-    max-height: 100vh;
+  background: rgba(40, 57, 101, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .game-grid {
-    display: grid;
-    gap: 10px;
-    padding: 10px;
-    height: calc(100vh - 56px);
+  display: grid;
+  gap: 10px;
+  padding: 10px;
 
+  /* Ocupa el 96% del espacio disponible debajo del navbar */
+  height: calc(99vh - var(--ion-safe-area-top) - 56px); /* 56px es la altura estándar del navbar */
+  width: 100%;
+  
+  &.easy {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+  }
+
+  &.medium {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+  }
+
+  &.hard {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1; /* Hace que las cartas sean cuadradas */
+    background-color: #515e82;
+  }
+}
+
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.timer {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 10px;
+}
+
+/* Responsivo para pantallas más grandes */
+@media (min-width: 768px) {
+  .game-grid {
     &.easy {
-      grid-template-columns: repeat(2, 1fr); /* 3 columnas para 6 cartas (3 pares) */
-      grid-auto-rows: calc((100% - 10px) / 3);
+      grid-template-columns: repeat(3, 1fr);
     }
-    &.medium {
-      grid-template-columns: repeat(3, 1fr); /* 4 columnas para 10 cartas (5 pares) */
-      grid-auto-rows: calc((100% - 20px) / 4);
-    }
-    &.hard {
-      grid-template-columns: repeat(4, 1fr); /* 4 columnas para 16 cartas (8 pares) */
-      grid-auto-rows: calc((100% - 30px) / 4);
-    }
-  
-    .card {
-      position: relative;
-      width: 100%;
-      padding-bottom: 100%; /* Hace que cada carta sea cuadrada */
-      background-color: #515e82;
-    }
-  }
 
-  .back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    &.medium {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    &.hard {
+      grid-template-columns: repeat(5, 1fr);
+    }
   }
-  .figure {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .game-grid {
+    &.easy {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    &.medium {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    &.hard {
+      grid-template-columns: repeat(6, 1fr);
+    }
   }
-  
-  .timer {
-    text-align: center;
-    font-size: 1.1rem;
-    padding: 10px;
-  }
-  
+}

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonCardSubtitle, IonCardHeader, IonCard, IonCardTitle, IonCardContent, IonButtons } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports:  [IonButton, IonCardContent, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons],
+  imports:  [IonButton, IonHeader, IonToolbar, IonTitle, IonContent, IonButtons],
 })
 export class HomePage implements OnInit {
 
@@ -57,38 +57,4 @@ export class HomePage implements OnInit {
     const randomIndex = Math.floor(Math.random() * images.length);
     this.imagenAleatoria = images[randomIndex];
   }
-
-
-
-
-
-
-
-
-
-
-
-  
-  /* authService: AuthService = inject(AuthService);
-  usuario: string = '';
-  public subscription: Subscription = new Subscription();
-
-
-
-  ngOnInit(): void {
-    this.subscription = this.authService.user$.subscribe((user) => {
-      if (user) {
-        this.authService.currentUserSig.set({
-          mail: user.email!,
-          pass: "",
-          nombre: "", 
-          apellido: "",
-        });
-        this.usuario = user.email!;        
-      } else {
-        this.usuario="";
-        this.authService.currentUserSig.set(null);    
-      }
-    });
-  } */
 }
